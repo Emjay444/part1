@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css"; // Importing your CSS file
 
-const Login = ({ onLogin }) => {
+const Login = () => {
   const [email, setEmail] = useState(""); // Email state
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -18,15 +18,14 @@ const Login = ({ onLogin }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }), // Removed role from payload
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         setMessage(data.message);
-        onLogin(); // Call onLogin without role to update the App component state
-        navigate("/app"); // Navigate to the App component
+        navigate("/task"); // Navigate to the App component after login
       } else {
         setMessage(data.message);
       }
@@ -50,8 +49,8 @@ const Login = ({ onLogin }) => {
       <form onSubmit={handleSubmit}>
         {/* Email Input */}
         <input
-          type="email" // Input type changed to email
-          placeholder="Email" // Changed placeholder to Email
+          type="email"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required

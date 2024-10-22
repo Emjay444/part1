@@ -16,7 +16,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root", // Your MySQL username
   password: "", // Your MySQL password if set
-  port: "3306", // Default MySQL port for XAMPP
+  port: "3307", // Default MySQL port for XAMPP
   database: "task_management", // Your database name
 });
 
